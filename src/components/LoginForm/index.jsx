@@ -41,6 +41,13 @@ function LoginForm() {
     [styles.invalidInput]: !LOGIN_FOR_REG_EXP.password.test(password),
   });
 
+  const isSubmitBtnDisadled = () => {
+    return !(
+      LOGIN_FOR_REG_EXP.email.test(email) &&
+      LOGIN_FOR_REG_EXP.password.test(password)
+    );
+  };
+
   return (
     <div className={styles.formContainer}>
       <h2 className={styles.formTitle}>Login Form</h2>
@@ -68,7 +75,11 @@ function LoginForm() {
             onChange={handlePasswordChange}
           />
         </label>
-        <button className={styles.submitBtn} type="submit">
+        <button
+          className={styles.submitBtn}
+          disabled={isSubmitBtnDisadled()}
+          type="submit"
+        >
           Login
         </button>
       </form>
