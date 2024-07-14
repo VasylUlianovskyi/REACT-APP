@@ -19,7 +19,7 @@
 
 .activeNavLink {
   color: blue;
-  border: 2px solid rgb(0, 153, 255);
+  outline: 2px solid rgb(0, 153, 255);
   border-radius: 15px;
   background-color: rgba(0, 204, 255, 0.658);
 }

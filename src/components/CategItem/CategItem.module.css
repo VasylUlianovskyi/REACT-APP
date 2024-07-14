@@ -1,0 +1,19 @@
+.categItem {
+  margin: 15px;
+  padding: 10px;
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-radius: 15px;
+}
+
+.greenItem {
+  color: green;
+  background-color: rgb(171, 240, 171);
+}
+
+.blueItem {
+  color: blue;
+  background-color: rgb(153, 235, 235);
+}
