@@ -1,11 +1,7 @@
-import LoginForm from "./components/LoginForm";
+import UsersPage from "./pages/UsersPage";
 
 function App() {
-  return (
-    <>
-      <LoginForm />
-    </>
-  );
+  return <UsersPage />;
 }
 
 export default App;
