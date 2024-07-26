@@ -1,7 +1,11 @@
 import UsersPage from "./pages/UsersPage";
 
 function App() {
-  return <UsersPage />;
+  return (
+    <>
+      <UsersPage />
+    </>
+  );
 }
 
 export default App;

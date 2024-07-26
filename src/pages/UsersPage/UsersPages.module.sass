@@ -5,12 +5,10 @@
   @include flex-container(row, space-between, start)
   gap: 10px
   flex-wrap: wrap
-  // min-width: 300px
   max-width: 1000px
   width: 100%
   margin: 0 auto
   padding: 10px
-  background-color: $main-bg-light-color
 
 .filterContainer,
 .listContainer
@@ -22,3 +20,49 @@
 
 .listContainer
   flex: 1 1 400px
+
+  .controls
+    display: flex
+    align-items: center
+    gap: 10px
+    margin-bottom: 20px
+
+  button
+    padding: 5px 10px
+
+  select
+    padding: 5px
+
+  .user-card
+    display: flex
+    align-items: center
+    padding: 10px
+    margin-bottom: 10px
+    border: 1px solid #ddd
+    border-radius: 5px
+    background-color: #f9f9f9
+
+    img
+      margin-right: 10px
+      border-radius: 50%
+
+      .flag
+        width: 30px
+        height: 30px
+
+    p
+      margin: 3px
+      padding: 3px
+
+    .male
+      border-left: 5px solid blue
+
+    .female
+      border-left: 5px solid pink
+
+  ul
+    list-style-type: none
+    padding: 0
+
+    li
+      list-style-type: none
