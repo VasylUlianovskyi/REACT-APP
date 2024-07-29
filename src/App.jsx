@@ -1,37 +1,113 @@
-import { useState } from "react";
-import { ThemeContext, UserContext } from "./contexts";
-import classNames from "classnames";
-import UserPage from "./pages/UserPage/UserPage";
+import { useEffect } from "react";
+import {
+  NavLink,
+  Link,
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  useNavigate,
+  Outlet,
+} from "react-router-dom";
 import styles from "./App.module.sass";
-import CONSTANTS from "./constant";
 
-const { LIGHT, DARK, BLUE } = CONSTANTS.THEMES;
+const linkStyle = ({ isActive }) =>
+  isActive ? { border: "1px solid purple" } : {};
 
 function App() {
-  const [user, setUser] = useState({
-    userSrc:
-      "https://shotkit.com/wp-content/uploads/2021/06/Cool-profile-picture-LinkedIn.jpg",
-    firstName: "Test",
-    lastName: "Testovich",
-  });
-
-  const [theme, setTheme] = useState("LIGHT");
-
-  const containerClassName = classNames(styles.container, {
-    [styles.light]: theme === LIGHT,
-    [styles.dark]: theme === DARK,
-    [styles.blue]: theme === BLUE,
-  });
-
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
-      <UserContext.Provider value={user}>
-        <div className={containerClassName}>
-          <UserPage />
-        </div>
-      </UserContext.Provider>
-    </ThemeContext.Provider>
+    <Router>
+      <Routes>
+        <Route path="/" element={<BasePage />}>
+          <Route index element={<Home />} />
+          <Route path="/partners/*" element={<PartnersPage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 
 export default App;
+
+function BasePage() {
+  return (
+    <>
+      <Header />
+      <Outlet />
+      <footer>Footer</footer>
+    </>
+  );
+}
+
+function PartnersPage() {
+  return (
+    <div>
+      <h2>Partners</h2>
+      <nav className={styles.container}>
+        <NavLink to="partner1" style={linkStyle}>
+          Partner1
+        </NavLink>
+        <NavLink to="partner2" style={linkStyle}>
+          Partner2
+        </NavLink>
+      </nav>
+      <Routes>
+        <Route path="partner1" element={<div>Partner1</div>} />
+        <Route path="partner2" element={<div>Partner2</div>} />
+      </Routes>
+    </div>
+  );
+}
+
+function Header() {
+  return (
+    <header>
+      <h1>My App</h1>
+      <nav>
+        <ul className={styles.container}>
+          <li>
+            <NavLink to="/" style={linkStyle}>
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/partners" style={linkStyle}>
+              Partners
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/about" style={linkStyle}>
+              About
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
+}
+
+function Home() {
+  return <div>Home</div>;
+}
+
+function About() {
+  return <div>About</div>;
+}
+
+function NotFound() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const id = setTimeout(() => navigate("/"), 2000);
+    return () => clearTimeout(id);
+  });
+
+  return (
+    <div>
+      404 This page is not exists yet{" "}
+      <div>
+        <Link to="/">Home</Link>
+      </div>
+    </div>
+  );
+}
