@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { CircleLoader } from "react-spinners";
 import { loadUsers } from "../../../api";
-
+import styles from "../UsersPages.module.sass";
 function UsersList() {
   const [users, setUsers] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
@@ -84,9 +84,9 @@ function UsersList() {
           filteredUsers.map((u) => (
             <li
               key={u.login.uuid}
-              className={classNames("user-card", {
-                male: u.gender === "male",
-                female: u.gender === "female",
+              className={classNames(styles.userCard, {
+                [styles.male]: u.gender === "male",
+                [styles.female]: u.gender === "female",
               })}
             >
               <img
